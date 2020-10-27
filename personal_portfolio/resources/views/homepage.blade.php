@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Kelvin - Bootstrap Resume Template</title>
+  <title>Resume Template</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -23,12 +23,6 @@
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-    Template Name: Kelvin
-    Template URL: https://templatemag.com/kelvin-bootstrap-resume-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
 </head>
 
 <body data-spy="scroll" data-offset="64" data-target="#section-topbar">
@@ -39,10 +33,10 @@
         <div class="row">
           <div class="dropdown">
             <ul id="nav" class="nav">
-              <li class="menu-item"><a class="smothscroll" href="#about" title="About"><i class="fa fa-user"></i></a></li>
-              <li class="menu-item"><a class="smothscroll" href="#resume" title="Resume"><i class="fa fa-file-text-o"></i></a></li>
-              <li class="menu-item"><a class="smothscroll" href="#work" title="Works"><i class="fa fa-briefcase"></i></a></li>
-              <li class="menu-item"><a class="smothscroll" href="#contact" title="Contact"><i class="fa fa-envelope"></i></a></li>
+              <li class="menu-item"><a class="smothscroll" href="#about" title="About"><i class="fa fa-user"><span> About</span></i></a></li>
+              <li class="menu-item"><a class="smothscroll" href="#resume" title="Resume"><i class="fa fa-file-text-o"><span> Resume</span></i></a></li>
+              <li class="menu-item"><a class="smothscroll" href="#work" title="Works"><i class="fa fa-briefcase"><span>  Works</span></i></a></li>
+              <li class="menu-item"><a class="smothscroll" href="#contact" title="Contact"><i class="fa fa-envelope"><span> Contact</span></i></a></li>
             </ul>
             <!--/ uL#nav -->
           </div>
@@ -64,7 +58,7 @@
     <div class="container">
       <div class="row centered">
         <div class="col-lg-12">
-          <h1>William T. Kelvin</h1>
+          <h1>Rezuan Ahmed Antu</h1>
           <h3>Web Designer | contact@example.com</h3>
         </div>
         <!--/.col-lg-12 -->
