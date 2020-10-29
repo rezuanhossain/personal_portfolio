@@ -332,13 +332,13 @@
           </div>
           <div class="col-lg-4">
             <p>
-              <t>Email</t><br/> contact@example.com <br/>
+              <t>Email</t><br/> {{ Auth::user()->email ?? "" }}<br/>
             </p>
             <p>
-              <t>Adress</t><br/> Some Ave. 987 <br/> Postal 23892 <br/> London, England. <br/>
+              <t>Adress</t><br/>{{ Auth::user()->address ?? "" }}
             </p>
             <p>
-              <t>Phone</t><br/> +55 8933-2383 <br/>
+              <t>Phone</t><br/> {{ Auth::user()->phone_no ?? "" }}<br/>
             </p>
             <p>
               <t>Social Links</t><br/>
@@ -396,22 +396,16 @@
     <!--/ #footer -->
   </section>
 
-  <div id="copyrights">
+{{--   <div id="copyrights">
     <div class="container">
       <p>
         &copy; Copyrights <strong>Kelvin</strong>. All Rights Reserved
       </p>
-      <div class="credits">
-        <!--
-          You are NOT allowed to delete the credit link to TemplateMag with free version.
-          You can delete the credit link only if you bought the pro version.
-          Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/kelvin-bootstrap-resume-template/
-          Licensing information: https://templatemag.com/license/
-        -->
+      <
         Created with Kelvin template by <a href="https://templatemag.com/">TemplateMag</a>
       </div>
     </div>
-  </div>
+  </div> --}}
 
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
