@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('phone_no')->nullable();
             $table->String('address')->nullable();
             $table->json('social_links')->nullable();
+            $table->json('skills')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

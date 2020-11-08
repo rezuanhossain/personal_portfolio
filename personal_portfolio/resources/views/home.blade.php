@@ -15,6 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="css/app.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -173,7 +174,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Starter Pages
+                Update Profile
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -181,7 +182,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="#" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
+                  <p>Add Skills</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -192,15 +193,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -215,14 +208,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Starter Page</h1>
+            <a class="btn" style="background-color: rgb(86, 226, 203)" href="{{ route('homepage') }}"><h1 class="m-0 text-white">Visit Your Site <i class="fa fa-arrow-right"></i></h1></a >
           </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
-          </div><!-- /.col -->
+
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -232,18 +220,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-6">
+            <div class="col-md-2"></div>
+          <div class="col-md-8">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <form action="{{ route("profile.update") }}" method="POST" >
+                    @csrf
+                <h5 class="card-title">Add Skills</h5>
+                <div>
+                    <input type="hidden" name="id" value={{ Auth::user()->id }}>
+                   <input class="form-control form-group" type="text" id="skill" name="skill" placeholder="Put Skill Name">
+                   <input class="form-control form-group" type="number" id="skill_level" name="skill_level" placeholder="Put Skill Level">
+                   <input class="btn btn-primary" id="add" value="Add">
 
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
+                <div id="dynamicTable">
+                    <br>
+                    <h6>Your current skill stack:</h6>
+                    @foreach(Auth::user()->skills as $key => $value)
+                    <input type="hidden" name="skills[{{ $key }}]" class="form-control" value="{{ $value }}" style="margin:5px;"/>
 
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+                    <span class="badge badge-secondary" style="padding:10px;">{{ Auth::user()->skills[$key] }}</span>
+                    @endforeach
+
+                </div>
+                </div>
+
+
               </div>
             </div>
 
@@ -258,34 +260,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <a href="#" class="card-link">Card link</a>
                 <a href="#" class="card-link">Another link</a>
               </div>
-            </div><!-- /.card -->
+
+            </div>
+            <input type="submit" class="btn btn-primary form-group form-control">
+        </form><!-- /.card -->
           </div>
+
+
           <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
 
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
           <!-- /.col-md-6 -->
         </div>
         <!-- /.row -->
@@ -296,24 +279,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
 
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-      Anything you want
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
 </div>
 <!-- ./wrapper -->
 
@@ -325,5 +291,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+
+<script type="text/javascript">
+
+
+
+$("#add").click(function(){
+
+
+    var skill=$("#skill").val();
+    var skill_level=$("#skill_level").val();
+
+    $("#dynamicTable").append('<tr><td><input type="text" name="skills['+skill+']" class="form-control" value="'+skill+''+skill_level+'" style="margin:5px;"/> <td><button type="button" class="btn btn-danger btn-md remove-tr">x</button></td></tr>');
+    $("#skill").val("");
+    $("#skill_level").val("");
+});
+
+$(document).on('click', '.remove-tr', function(){
+     $(this).parents('tr').remove();
+});
+</script>
 </body>
 </html>

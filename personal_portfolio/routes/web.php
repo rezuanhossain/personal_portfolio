@@ -20,6 +20,5 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/landing',function(){
-    return view('homepage');
-});
+Route::get('/landing', 'HomeController@show')->name('homepage');
+Route::post('/profileupdate','HomeController@update_profile')->name('profile.update');

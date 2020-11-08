@@ -222,45 +222,26 @@
 
 
   <!--SKILLS DESCRIPTION -->
-  <div id="skillswrap">
-    <div class="container">
+  <div id="" style="padding:20px; background-color:#bce5e5;">
+    <div class="container-fluid">
+        <h1 style="margin-left: 10rem; ">Skills</h1>
       <div class="row">
-        <div class="col-lg-2 col-lg-offset-1">
-          <h5>SKILLS</h5>
-        </div>
-        <div class="col-lg-3 centered">
-          <canvas id="javascript" height="130" width="130"></canvas>
-          <p>Javascript</p>
-          <br>
-        </div>
-        <div class="col-lg-3 centered">
-          <canvas id="bootstrap" height="130" width="130"></canvas>
-          <p>Bootstrap</p>
-          <br>
-        </div>
-        <div class="col-lg-3 centered">
-          <canvas id="wordpress" height="130" width="130"></canvas>
-          <p>Wordpress</p>
-          <br>
-        </div>
+        <div class="">
 
-        <div class="col-lg-3 col-lg-offset-3 centered">
-          <canvas id="html" height="130" width="130"></canvas>
-          <p>HTML/CSS</p>
-          <br>
         </div>
-        <div class="col-lg-3 centered">
-          <canvas id="photoshop" height="130" width="130"></canvas>
-          <p>Photoshop</p>
-          <br>
-        </div>
-        <div class="col-lg-3 centered">
-          <canvas id="illustrator" height="130" width="130"></canvas>
-          <p>Illustrator</p>
-          <br>
-        </div>
+        @if(!is_null(Auth::user()->skills))
+        @foreach($skills as $key => $value)
+        <div class="">
 
-      </div>
+            <h4>{{ $key}}</h4>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width:{{ $value }}%;" aria-valuenow="{{ $value }}" aria-valuemin="0" aria-valuemax="50">
+            </div>
+        </div>
+        @endforeach
+        @endif
+
+        </div>
       <!--/.row -->
       <br>
     </div>
