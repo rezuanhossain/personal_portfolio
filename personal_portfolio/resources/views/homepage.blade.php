@@ -17,6 +17,7 @@
   <!-- Bootstrap CSS File -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+
   <!-- Libraries CSS Files -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
@@ -39,6 +40,17 @@
               <li class="menu-item"><a class="smothscroll" href="#contact" title="Contact"><i class="fa fa-envelope"><span> Contact</span></i></a></li>
             </ul>
             <!--/ uL#nav -->
+            <div class="card-body" >
+                @if (session('message'))
+                <div class="alert alert-success alert-block">
+
+                        <strong>   {{ session('message') }}</strong>
+                         <button class="btn btn-danger right" type="button" style="padding: 2px!important;margin-left:100px;" class="close" data-dismiss="alert">x</button>
+                </div>
+                @endif
+
+
+            </div>
           </div>
           <!-- /.dropdown -->
 
@@ -56,6 +68,7 @@
 
   <div id="headerwrap">
     <div class="container">
+
       <div class="row centered">
         <div class="col-lg-12">
           <h1>Rezuan Ahmed Antu</h1>
@@ -229,7 +242,7 @@
         <div class="">
 
         </div>
-        @if(!is_null(Auth::user()->skills))
+        @if(!is_null($skills))
         @foreach($skills as $key => $value)
         <div class="">
 
@@ -313,29 +326,31 @@
           </div>
           <div class="col-lg-4">
             <p>
-              <t>Email</t><br/> {{ Auth::user()->email ?? "" }}<br/>
+              <t>Email</t><br/> {{$email ?? "" }}<br/>
             </p>
             <p>
-              <t>Adress</t><br/>{{ Auth::user()->address ?? "" }}
+              <t>Adress</t><br/>{{ $address ?? "" }}
             </p>
             <p>
-              <t>Phone</t><br/> {{ Auth::user()->phone_no ?? "" }}<br/>
+              <t>Phone</t><br/> {{ $phone_no ?? "" }}<br/>
             </p>
             <p>
               <t>Social Links</t><br/>
-              <a href="#"><i class="fa fa-dribbble"></i></a>
-              <a href="#"><i class="fa fa-twitter"></i></a>
-              <a href="#"><i class="fa fa-facebook"></i></a>
-              <a href="#"><i class="fa fa-linkedin"></i></a>
-              <a href="#"><i class="fa fa-apple"></i></a>
+              @if(!is_null($social_links))
+              @foreach($social_links as $key => $value)
+              <a href="{{$value }}"><i class="fa fa-{{ $key }}"></i></a>
+              @endforeach
+
+              @endif
             </p>
           </div>
           <div class="col-lg-6">
             <p>
               <sm>CONTACT FORM</sm>
             </p>
-            <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
-
+            <form action="{{route('contact')}}" method="POST">
+                @csrf
+                <input type="hidden" name="id" value={{ $id }}>
               <div class="form-group">
                 <label for="contact-name">Your Name</label>
                 <input type="name" name="name" class="form-control" id="contact-name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
@@ -358,11 +373,7 @@
                 <div class="validate"></div>
               </div>
 
-              <div class="loading"></div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-
-              <div class="form-send">
+              <div class="form-group">
                 <button type="submit" class="btn btn-large">Send Message</button>
               </div>
 
@@ -397,6 +408,11 @@
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
-
+  <script>
+      function cross() {
+          console.log("fuck");
+        document.getElementById("cross").style.display= none;
+    }
+  </script>
 </body>
 </html>

@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>AdminLTE 3 | Starter</title>
+  <title>Admin Dashboard</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -203,6 +203,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+
+
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -224,7 +226,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-md-8">
             <div class="card">
               <div class="card-body">
-                <form action="{{ route("profile.update") }}" method="POST" >
+                <form action="{{ route("profile.update") }}" method="POST" enctype="multipart/form-data">
                     @csrf
                 <h5 class="card-title">Add Skills</h5>
                 <div>
@@ -236,12 +238,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div id="dynamicTable">
                     <br>
                     <h6>Your current skill stack:</h6>
+                    @if(!is_null(Auth::user()->skills))
                     @foreach(Auth::user()->skills as $key => $value)
                     <input type="hidden" name="skills[{{ $key }}]" class="form-control" value="{{ $value }}" style="margin:5px;"/>
 
                     <span class="badge badge-secondary" style="padding:10px;">{{ Auth::user()->skills[$key] }}</span>
                     @endforeach
-
+                    @endif
                 </div>
                 </div>
 
@@ -249,19 +252,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div>
             </div>
 
-            <div class="card card-primary card-outline">
+            <div class="card card-primary ">
+
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title form-group">Add Or Update Social Media Links</h5><br><br><br>
+                <label for="socaila_links[facebook]">Facebook </label>
+                <input class="form-control form-group" type="text" name="social_links[facebook]" placeholder="Put Facebook Profile Link" >
+                <label for="socaila_links[linkedin]">LinkedIn </label>
+                <input class="form-control form-group" type="text" name="social_links[linkedin]" placeholder="Put LinkedIn Profile Link" >
+                <label for="socaila_links[instagram]">Instagram </label>
+                <input class="form-control form-group" type="text" name="social_links[instagram]" placeholder="Put Instagram Profile Link" >
+                <label for="socaila_links[github]">Git-Hub </label>
+                <input class="form-control form-group" type="text" name="social_links[github]" placeholder="Put Git-Hub Profile Link" >
+                <label for="socaila_links[twitter]">Twitter </label>
+                <input class="form-control form-group" type="text" name="social_links[twitter]" placeholder="Put Twitter Profile Link" >
 
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
               </div>
 
             </div>
+            <div class="card card-primary ">
+
+                <div class="card-body">
+                  <h5 class="card-title form-group">Add Or Update Personal Information</h5><br><br>
+                  <label for="address">Name </label>
+                  <input class="form-control form-group" type="text" name="name" placeholder="Put Name"  value={{ Auth::user()->name ?? "" }}>
+                  <label for="address">Email </label>
+                  <input class="form-control form-group" type="text" name="email" placeholder="Put Email" value={{ Auth::user()->email ?? "" }} >
+                  <label for="address">Phone Number </label>
+                  <input class="form-control form-group" type="text" name="phone_no" placeholder="Put Phone Number" value={{ Auth::user()->phone_no ?? "" }} >
+                  <label for="address">Address </label>
+                  <input class="form-control form-group" type="text" name="address" placeholder="Put Address (don't put space..)" value={{ Auth::user()->address ?? ""}} >
+
+
+                </div>
+
+              </div>
             <input type="submit" class="btn btn-primary form-group form-control">
         </form><!-- /.card -->
           </div>
@@ -302,7 +327,7 @@ $("#add").click(function(){
     var skill=$("#skill").val();
     var skill_level=$("#skill_level").val();
 
-    $("#dynamicTable").append('<tr><td><input type="text" name="skills['+skill+']" class="form-control" value="'+skill+''+skill_level+'" style="margin:5px;"/> <td><button type="button" class="btn btn-danger btn-md remove-tr">x</button></td></tr>');
+    $("#dynamicTable").append('<tr><td><input type="text" name="skills['+skill+']" class="form-control" value="'+skill+''+skill_level+''+"%"+'" style="margin:5px;"/> <td><button type="button" class="btn btn-danger btn-md remove-tr">x</button></td></tr>');
     $("#skill").val("");
     $("#skill_level").val("");
 });
@@ -310,6 +335,6 @@ $("#add").click(function(){
 $(document).on('click', '.remove-tr', function(){
      $(this).parents('tr').remove();
 });
-</script>
+
 </body>
 </html>
