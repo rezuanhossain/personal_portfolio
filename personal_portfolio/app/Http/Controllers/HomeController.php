@@ -32,10 +32,11 @@ class HomeController extends Controller
         $id=$request->id;
 
         $user=User::findOrFail($id);
-        $skills=$user->skills;
+
         $social_links=$user->social_links;
-        if($skills || $social_links){
-            array_push($skills,$request->skills);
+
+        if(!is_null($skills) || !is_null($social_links)){
+
             array_push($social_links,$request->social_links);
         }
 

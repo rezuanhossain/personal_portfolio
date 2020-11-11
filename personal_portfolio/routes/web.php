@@ -23,3 +23,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/landing', 'HomeController@show')->name('homepage');
 Route::post('/profileupdate','HomeController@update_profile')->name('profile.update');
 Route::post('/contact','ContactFormController@contact_me')->name('contact');
+Route::post('/education','EducationFieldController@create');

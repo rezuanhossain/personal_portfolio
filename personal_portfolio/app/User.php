@@ -37,4 +37,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'social_links' => 'array',
         'skills' => 'array',];
+
+    public function education_field(){
+        return $this->hasMany('App\EducationField');
+    }
 }

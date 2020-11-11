@@ -8,6 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
   <title>Admin Dashboard</title>
 
@@ -233,7 +234,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <input type="hidden" name="id" value={{ Auth::user()->id }}>
                    <input class="form-control form-group" type="text" id="skill" name="skill" placeholder="Put Skill Name">
                    <input class="form-control form-group" type="number" id="skill_level" name="skill_level" placeholder="Put Skill Level">
-                   <input class="btn btn-primary" id="add" value="Add">
+
+                  <input class="form-group btn btn-primary" id="add" value="Add" readonly>
 
                 <div id="dynamicTable">
                     <br>
@@ -270,6 +272,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div>
 
             </div>
+            <div class="card card-primary ">
+
+                <div class="card-body">
+                  <h5 class="card-title form-group">Add Or Update Education Details</h5><br><br>
+                  <label for="title">Degree </label>
+                  <input class="form-control form-group" type="text" id="title" name="title" placeholder="Put Degree title" >
+                  <label for="institution">Institution </label>
+                  <input class="form-control form-group" type="text" id="institution" name="institution" placeholder="Put The institution" >
+                  <label for="years">Years </label>
+                  <input class="form-control form-group" type="number" id="years" name="years" placeholder="Put Course Years " >
+                  <label for="graduating_in">Graduation Date </label>
+                  <input class="form-control form-group" type="date" id="graduating_in" name="graduating_in" placeholder="Put Graduation Date" >
+                  <label for="Status">Status </label>
+                 <select class="form-control form-group" name="status" id="status">
+                     <option value="graduated">Graduated</option>
+                     <option value="in-progress">In-Progress</option>
+                 </select>
+                 <input class="form-group btn btn-primary" id="add2" value="Add" readonly>
+                </div>
+                <div id="dynamicTable2">
+                    {{-- <br>
+                    <h6>Your current skill stack:</h6>
+                    @if(!is_null(Auth::user()->skills))
+                    @foreach(Auth::user()->skills as $key => $value)
+                    <input type="hidden" name="skills[{{ $key }}]" class="form-control" value="{{ $value }}" style="margin:5px;"/>
+
+                    <span class="badge badge-secondary" style="padding:10px;">{{ Auth::user()->skills[$key] }}</span>
+                    @endforeach
+                    @endif --}}
+                </div>
+
+              </div>
             <div class="card card-primary ">
 
                 <div class="card-body">
@@ -323,7 +357,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 $("#add").click(function(){
 
-
+    console.log("hit");
     var skill=$("#skill").val();
     var skill_level=$("#skill_level").val();
 
@@ -332,9 +366,38 @@ $("#add").click(function(){
     $("#skill_level").val("");
 });
 
+
 $(document).on('click', '.remove-tr', function(){
      $(this).parents('tr').remove();
 });
+</script>
+<script>
+    $("#add2").click(function(){
+    console.log("hit");
+    var title=document.getElementById('title').value;
+    var institution=document.getElementById('institution').value;
+    var years=document.getElementById('years').value;
+    var graduating_in=document.getElementById('graduating_in').value;
+    var status=document.getElementById('status').value;
+    let _token   = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+       url: "/education",
+        type:"POST",
+        data:{
+          title:title,
+          institution:institution,
+          years:years,
+          graduating_in:graduating_in,
+          status: status,
+          _token: _token
+        },
+        success:function(response){
+          console.log(response);
 
+        },
+       });
+});
+
+</script>
 </body>
 </html>
