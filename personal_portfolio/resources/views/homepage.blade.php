@@ -72,8 +72,8 @@
 
       <div class="row centered">
         <div class="col-lg-12">
-          <h1>Rezuan Ahmed Antu</h1>
-          <h3>Web Designer | contact@example.com</h3>
+          <h1>{{ $name }}</h1>
+          <h3>Web Designer | {{ $email }}</h3>
         </div>
         <!--/.col-lg-12 -->
       </div>
@@ -93,8 +93,7 @@
             <h5>ABOUT</h5>
           </div>
           <div class="col-lg-6">
-            <p>I'm web designer & front-end developer with 7 years of professional experience. I'm interested in all kinds of visual communication, but my major focus is on designing web, mobile & tablet interfaces. I also have skills in other fields like
-              branding, icon design or web development.</p>
+            <p>{{  $about}}</p>
           </div>
           <div class="col-lg-3">
             <p><a href="#"><i class="icon-file"></i></a>
@@ -114,28 +113,31 @@
   <section id="resume" name="resume">
     <!--EDUCATION DESCRIPTION -->
     <div class="container desc">
-      <div class="row">
+        <div class="">
+            <h5><strong>EDUCATION</strong></h5>
+            <br>
+          </div>
+      <div class="row" style="padding-left:100px!important;">
 
-        <div class="col-lg-2 col-lg-offset-1">
-          <h5>EDUCATION</h5>
-        </div>
-        {{-- @foreach($variable as $key => $value) --}}
-        <div class="col-lg-6">
+        @if(!is_null($education))
+        @foreach($education as $item)
+
+        <div class="col-md-9 ">
             <p>
-              <t>Master of Web Design</t><br/> St. Patrick University <br/>
-              <i>3 Years Course</i>
+              <t>{{ $item->title }}</t><br/> {{ $item->institution }} <br/>
+              <i>{{ $item->years }} Years Course</i>
             </p>
           </div>
           <div class="col-lg-3">
             <p>
-              <sm>GRADUATING IN MAY 2014</sm><br/>
+              <sm>GRADUATING IN {{ $item->graduating_in }}</sm><br/>
               <imp>
-                <sm>IN PROGRESS</sm>
+                <sm>{{ $item->status }}</sm>
               </imp>
             </p>
           </div>
-        {{-- @endforeach --}}
-
+        @endforeach
+        @endif
       </div>
       <!--/.row -->
       <br>

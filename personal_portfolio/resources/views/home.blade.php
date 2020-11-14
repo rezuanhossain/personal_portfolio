@@ -295,15 +295,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                  <a href="{{ route('education.view') }}" class="btn btn-success" id="edit" >Edit Entry</a>
                 </div>
                 <div id="dynamicTable2">
-                    {{-- <br>
-                    <h6>Your current skill stack:</h6>
-                    @if(!is_null(Auth::user()->skills))
-                    @foreach(Auth::user()->skills as $key => $value)
-                    <input type="hidden" name="skills[{{ $key }}]" class="form-control" value="{{ $value }}" style="margin:5px;"/>
 
-                    <span class="badge badge-secondary" style="padding:10px;">{{ Auth::user()->skills[$key] }}</span>
-                    @endforeach
-                    @endif --}}
                 </div>
 
               </div>
@@ -319,7 +311,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <input class="form-control form-group" type="text" name="phone_no" placeholder="Put Phone Number" value={{ Auth::user()->phone_no ?? "" }} >
                   <label for="address">Address </label>
                   <input class="form-control form-group" type="text" name="address" placeholder="Put Address (don't put space..)" value={{ Auth::user()->address ?? ""}} >
-
+                  <label for="About">About</label>
+                  <textarea class="form-control" id="About"  name="about" rows="3">{{ Auth::user()->about?? "" }}</textarea>
 
                 </div>
 
