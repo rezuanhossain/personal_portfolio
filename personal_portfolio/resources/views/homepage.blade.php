@@ -38,6 +38,11 @@
               <li class="menu-item"><a class="smothscroll" href="#resume" title="Resume"><i class="fa fa-file-text-o"><span> Resume</span></i></a></li>
               <li class="menu-item"><a class="smothscroll" href="#work" title="Works"><i class="fa fa-briefcase"><span>  Works</span></i></a></li>
               <li class="menu-item"><a class="smothscroll" href="#contact" title="Contact"><i class="fa fa-envelope"><span> Contact</span></i></a></li>
+                <li class="menu-item">
+              @auth
+              <a  href="{{ route('home') }}" title="Contact"><li class="menu-item"><i class="fa fa-gear"><span> Dashboard</span></i></li></a>
+              @endauth
+            </li>
             </ul>
             <!--/ uL#nav -->
             <div class="card-body" >
@@ -114,7 +119,7 @@
     <!--EDUCATION DESCRIPTION -->
     <div class="container desc">
         <div class="">
-            <h5><strong>EDUCATION</strong></h5>
+            <h5>EDUCATION</h5>
             <br>
           </div>
       <div class="row" style="padding-left:100px!important;">

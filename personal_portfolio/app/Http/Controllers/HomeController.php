@@ -5,6 +5,7 @@ use App\User;
 use Auth;
 use Illuminate\Http\Request;
 use App\EducationField;
+use App\WorkField;
 class HomeController extends Controller
 {
     /**
@@ -29,8 +30,9 @@ class HomeController extends Controller
         return view('home',compact('user'));
     }
     public function update_profile(Request $request){
-        $id=$request->id;
 
+        $id=$request->id;
+        $to=$request->end;
         $user=User::findOrFail($id);
 
         $social_links=$user->social_links;
@@ -49,6 +51,19 @@ class HomeController extends Controller
             'address'=>$request->address,
             'about'=>$request->about
         ]);
+        if(!is_null($request->to)){
+            $to=$request->end;
+        }
+        $work_field=WorkField::create([
+            'user_id'=>$id,
+            'title'=>$request->title,
+            'company'=>$request->company,
+            'description'=>$request->description,
+            'from'=>$request->from,
+            'to'=>$to
+
+        ]);
+
         return redirect()->back();
     }
     public function show(){

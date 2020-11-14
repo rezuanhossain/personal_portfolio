@@ -15,6 +15,12 @@ class CreateWorkFieldsTable extends Migration
     {
         Schema::create('work_fields', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('title');
+            $table->string('company');
+            $table->text('description');
+            $table->date('from');
+            $table->string('to');
             $table->timestamps();
         });
     }

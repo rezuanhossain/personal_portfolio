@@ -254,7 +254,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div>
             </div>
 
-            <div class="card card-primary ">
+            <div class="card card-primary">
 
               <div class="card-body">
                 <h5 class="card-title form-group">Add Or Update Social Media Links</h5><br><br><br>
@@ -270,8 +270,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <input class="form-control form-group" type="text" name="social_links[twitter]" placeholder="Put Twitter Profile Link" >
 
               </div>
-
             </div>
+
+            {{-- education section --}}
+
             <div class="card card-primary ">
 
                 <div class="card-body">
@@ -298,7 +300,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 </div>
 
-              </div>
+            </div>
+
+            {{-- work section --}}
+            <div class="card card-primary ">
+                <div class="card-body">
+                    <h5 class="card-title form-group">Add Or Update Work Details</h5><br><br>
+                  <label for="title">Job Title </label>
+                  <input class="form-control form-group" type="text" id="title" name="title" placeholder="Put Job title" >
+                  <label for="company">Company </label>
+                  <input class="form-control form-group" type="text" id="company" name="company" placeholder="Put The Company" >
+                  <label for="from">Started Date </label>
+                  <input class="form-control form-group" type="date" id="from" name="from" placeholder="Put Graduation Date" >
+                  <label for="Status">Status </label>
+                  <div class="form-check ">
+                    <input class="form-check-input" type="radio" name="end"  value="current" >
+                    <label class="form-check-label" for="current">
+                      CURRENT
+                    </label>
+                  </div>
+                  <div class="form-check ">
+                    <input class="form-check-input" type="radio"  name="end" id="exampleRadios1" >
+                    <label class="form-check-label" for="exampleRadios1">
+                      Finished
+                    </label>
+                  </div>
+                  <label for="from">Finished Date </label>
+                  <input class="form-control form-group" style="display:none;" type="date" id="to" name="to" placeholder="Put Finished Date" >
+                  <label for="des">Work Description</label>
+                  <textarea class="form-control" id="des" placeholder="Put Work Description ..." name="description" rows="3"></textarea>
+                </div>
+            </div>
+
+            {{-- personal info section --}}
             <div class="card card-primary ">
 
                 <div class="card-body">
@@ -319,7 +353,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div>
             <input type="submit" class="btn btn-primary form-group form-control">
         </form><!-- /.card -->
-          </div>
+        </div>
 
 
           <!-- /.col-md-6 -->
@@ -355,9 +389,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="dist/js/adminlte.min.js"></script>
 
 <script type="text/javascript">
-
-
-
 $("#add").click(function(){
 
     console.log("hit");
@@ -416,5 +447,12 @@ $(document).on('click', '.remove-tr', function(){
 });
 
 </script>
+<script type="text/javascript">
+    $("#exampleRadios1").click(function(){
+        let to=document.getElementById('to');
+        to.style.display="block";
+    });
+
+    </script>
 </body>
 </html>
