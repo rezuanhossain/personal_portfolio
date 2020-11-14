@@ -15,7 +15,9 @@ class EducationFieldController extends Controller
      */
     public function index()
     {
-        //
+        $edu_field=EducationField::all()->where('user_id',auth()->user()->id);
+
+        return view('list',compact('edu_field'));
     }
 
     /**
@@ -66,9 +68,10 @@ class EducationFieldController extends Controller
      * @param  \App\EducationField  $educationField
      * @return \Illuminate\Http\Response
      */
-    public function edit(EducationField $educationField)
+    public function edit($id)
     {
-        //
+        $entry=EducationField::findOrFail($id);
+        return view('edit',compact('entry'));
     }
 
     /**
@@ -78,9 +81,17 @@ class EducationFieldController extends Controller
      * @param  \App\EducationField  $educationField
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EducationField $educationField)
+    public function update(Request $request)
     {
-        //
+        $entry=EducationField::findOrFail($request->id);
+        $entry->update([
+            'title'=>$request->title,
+            'institution'=>$request->institution,
+            'years'=>$request->years,
+            'graduating_in'=>$request->graduating_in,
+            'status'=>$request->status,
+        ]);
+        return redirect()->route('education.view');
     }
 
     /**
@@ -92,5 +103,10 @@ class EducationFieldController extends Controller
     public function destroy(EducationField $educationField)
     {
         //
+    }
+    public function delete_entry($id){
+        $entry= EducationField::findOrFail($id);
+        $entry->delete();
+        return redirect()->back();
     }
 }

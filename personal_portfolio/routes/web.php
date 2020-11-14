@@ -24,3 +24,7 @@ Route::get('/landing', 'HomeController@show')->name('homepage');
 Route::post('/profileupdate','HomeController@update_profile')->name('profile.update');
 Route::post('/contact','ContactFormController@contact_me')->name('contact');
 Route::post('/education','EducationFieldController@create');
+Route::get('/education-view','EducationFieldController@index')->name('education.view');
+Route::get('/edication-delete/{id}','EducationFieldController@delete_entry')->name('education.delete');
+Route::get('/education-edit/{id}','EducationFieldController@edit')->name('education.edit');
+Route::post('/education-update','EducationFieldController@update')->name('education.update');

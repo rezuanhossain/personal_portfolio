@@ -286,10 +286,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <input class="form-control form-group" type="date" id="graduating_in" name="graduating_in" placeholder="Put Graduation Date" >
                   <label for="Status">Status </label>
                  <select class="form-control form-group" name="status" id="status">
+                  <option value="">--Select--</option>
                      <option value="graduated">Graduated</option>
+
                      <option value="in-progress">In-Progress</option>
                  </select>
                  <input class="form-group btn btn-primary" id="add2" value="Add" readonly>
+                 <a href="{{ route('education.view') }}" class="btn btn-success" id="edit" >Edit Entry</a>
                 </div>
                 <div id="dynamicTable2">
                     {{-- <br>
@@ -343,7 +346,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
+<style>
+  #edit{
+    display:none;
+    color: white;
 
+
+  }
+</style>
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -392,6 +402,20 @@ $(document).on('click', '.remove-tr', function(){
           _token: _token
         },
         success:function(response){
+          document.getElementById('title').value="";
+          document.getElementById('institution').value="";
+          document.getElementById('years').value="";
+          document.getElementById('graduating_in').value="";
+          document.getElementById('status').value="";
+          let button=document.getElementById('edit')
+          button.style.display="block";
+          button.style.color="white";
+          button.style.padding="10px";
+
+          button.style.height="50px";
+
+          button.style.margin="0px";
+
           console.log(response);
 
         },

@@ -42,10 +42,11 @@
             <!--/ uL#nav -->
             <div class="card-body" >
                 @if (session('message'))
-                <div class="alert alert-success alert-block">
-
-                        <strong>   {{ session('message') }}</strong>
-                         <button class="btn btn-danger right" type="button" style="padding: 2px!important;margin-left:100px;" class="close" data-dismiss="alert">x</button>
+                <div class="alert alert-success alert-block d-flex justify-content-between">
+                        <div class="d-flex justify-content-between">
+                         <strong> {{ session('message') }}</strong>
+                         <button class="btn btn-danger right" type="button"  class="close" data-dismiss="alert">X</button>
+                        </div>
                 </div>
                 @endif
 
@@ -400,8 +401,7 @@
   <script src="js/main.js"></script>
   <script>
       function cross() {
-          console.log("fuck");
-        document.getElementById("cross").style.display= none;
+           document.getElementById("cross").style.display= none;
     }
   </script>
 </body>
