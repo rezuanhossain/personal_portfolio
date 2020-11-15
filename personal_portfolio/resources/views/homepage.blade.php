@@ -40,7 +40,7 @@
               <li class="menu-item"><a class="smothscroll" href="#contact" title="Contact"><i class="fa fa-envelope"><span> Contact</span></i></a></li>
                 <li class="menu-item">
               @auth
-              <a  href="{{ route('home') }}" title="Contact"><li class="menu-item"><i class="fa fa-gear"><span> Dashboard</span></i></li></a>
+              <a  href="{{ route('home') }}" title="Contact"><i class="fa fa-gear"><span> Dashboard</span></i></a>
               @endauth
             </li>
             </ul>
@@ -154,38 +154,31 @@
 
   <!--WORK DESCRIPTION -->
   <div class="container desc">
-    <div class="row">
-
-      <div class="col-lg-2 col-lg-offset-1">
+    <div class="">
         <h5>WORK</h5>
       </div>
-      <div class="col-lg-6">
-        <p>
-          <t>Front-end Developer</t><br/> Example Corp. <br/>
-        </p>
-        <p>
-          <more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more>
-        </p>
-      </div>
-      <div class="col-lg-3">
-        <p>
-          <sm>AUGUST 2012 - CURRENT</sm>
-        </p>
-      </div>
+    <div class="row" >
+        @if(!is_null($work_field))
+        @foreach($work_field as $item)
 
-      <div class="col-lg-6 col-lg-offset-3">
-        <p>
-          <t>Web Designer - Intern</t><br/> Onassis Ltd. <br/>
-        </p>
-        <p>
-          <more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more>
-        </p>
-      </div>
-      <div class="col-lg-3">
-        <p>
-          <sm>JUNE 2010 - JULY 2012</sm>
-        </p>
-      </div>
+        <div style="padding-left:100px!important;">
+            <div class="col-md-9">
+                <p>
+                  <t>{{ $item->title }}</t><br/>{{ $item->company }}<br/>
+                </p>
+                <p>
+                  <more>{{ $item->description }}</more>
+                </p>
+              </div>
+              <div class="col-md-3">
+                <p>
+                  <sm>{{ $item->from }} - {{ $item->to }}</sm>
+                </p>
+              </div>
+        </div>
+        @endforeach
+
+      @endif
     </div>
     <!--/.row -->
     <br>

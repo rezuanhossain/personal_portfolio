@@ -51,18 +51,7 @@ class HomeController extends Controller
             'address'=>$request->address,
             'about'=>$request->about
         ]);
-        if(!is_null($request->to)){
-            $to=$request->end;
-        }
-        $work_field=WorkField::create([
-            'user_id'=>$id,
-            'title'=>$request->title,
-            'company'=>$request->company,
-            'description'=>$request->description,
-            'from'=>$request->from,
-            'to'=>$to
 
-        ]);
 
         return redirect()->back();
     }
@@ -86,8 +75,9 @@ class HomeController extends Controller
         $id=$user->id;
 
         $education=EducationField::where('user_id',$id)->get();
+        $work_field=WorkField::where('user_id',$id)->get();
 
 
-        return view('homepage',compact('skills','social_links','email','name','address','phone_no','id','about','education'));
+        return view('homepage',compact('skills','social_links','email','name','address','phone_no','id','about','education','work_field'));
     }
 }

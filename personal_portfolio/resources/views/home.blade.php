@@ -307,14 +307,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="card-body">
                     <h5 class="card-title form-group">Add Or Update Work Details</h5><br><br>
                   <label for="title">Job Title </label>
-                  <input class="form-control form-group" type="text" id="title" name="title" placeholder="Put Job title" >
+                  <input class="form-control form-group" type="text" id="work_title" name="work_title" placeholder="Put Job title" >
                   <label for="company">Company </label>
                   <input class="form-control form-group" type="text" id="company" name="company" placeholder="Put The Company" >
                   <label for="from">Started Date </label>
                   <input class="form-control form-group" type="date" id="from" name="from" placeholder="Put Graduation Date" >
                   <label for="Status">Status </label>
                   <div class="form-check ">
-                    <input class="form-check-input" type="radio" name="end"  value="current" >
+                    <input class="form-check-input" type="radio" id="end" name="end"  value="current" >
                     <label class="form-check-label" for="current">
                       CURRENT
                     </label>
@@ -328,7 +328,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <label for="from">Finished Date </label>
                   <input class="form-control form-group" style="display:none;" type="date" id="to" name="to" placeholder="Put Finished Date" >
                   <label for="des">Work Description</label>
-                  <textarea class="form-control" id="des" placeholder="Put Work Description ..." name="description" rows="3"></textarea>
+                  <textarea class="form-control" id="des" placeholder="Put Work Description ..." name="work_description" rows="3"></textarea><br>
+                  <input class="form-group btn btn-primary" id="add3" value="Add" readonly>
+                  <a href="{{ route('workfield.list') }}" class="btn btn-success form-group form-control" id="edit2" style="display: none;">Edit Entry</a>
+
                 </div>
             </div>
 
@@ -453,6 +456,54 @@ $(document).on('click', '.remove-tr', function(){
         to.style.display="block";
     });
 
-    </script>
+</script>
+
+
+<script>
+    $("#add3").click(function(){
+    console.log("hit");
+    var title=document.getElementById('work_title').value;
+    var company=document.getElementById('company').value;
+    var description=document.getElementById('des').value;
+    var from=document.getElementById('from').value;
+    var to2="";
+    var end2="";
+    var to=document.getElementById('to');
+    var end=document.getElementById('end');
+    if(to !=='null'){
+        to2=to.value;
+    }
+    if(end !=='null'){
+        end2=end.value;
+    }
+
+    let _token   = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+       url: "/workfield-create",
+        type:"POST",
+        data:{
+          title:title,
+          company:company,
+          description:description,
+          from:from,
+          to: to2,
+          end: end2,
+          _token: _token
+        },
+        success:function(response){
+
+          let button=document.getElementById('edit2')
+          button.style.display="block";
+          button.style.color="white";
+          button.style.padding="10px";
+
+          button.style.height="50px";
+
+          button.style.margin="0px";
+        },
+       });
+});
+
+</script>
 </body>
 </html>
