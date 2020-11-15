@@ -349,8 +349,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <label for="address">Address </label>
                   <input class="form-control form-group" type="text" name="address" placeholder="Put Address (don't put space..)" value={{ Auth::user()->address ?? ""}} >
                   <label for="About">About</label>
-                  <textarea class="form-control" id="About"  name="about" rows="3">{{ Auth::user()->about?? "" }}</textarea>
+                  <textarea class="form-control" id="About"  name="about" rows="3">{{ Auth::user()->about?? "" }}</textarea><br>
+                  <label  >Put Your Site Hero Iamge <small>(Recomended: 13:6 ratio)</small></label><br>
+                  <label for="image" class="btn btn-primary form-group" id="selector" style="cursor: pointer;">Select Image <i class="fas fa-image"></i></label>
 
+                  <input class="form-group form-control" style="opacty:1;position: absolute;z-index:-1;" type="file" id="image" name="image">
                 </div>
 
               </div>
@@ -505,5 +508,6 @@ $(document).on('click', '.remove-tr', function(){
 });
 
 </script>
+
 </body>
 </html>

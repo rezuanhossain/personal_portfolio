@@ -72,11 +72,13 @@
   </div>
   <!--/ #section-topbar -->
 
-  <div id="headerwrap">
+  <div id="headerwrap" style="background:url({{ asset($image ?? "") }})no-repeat center top;background-size: cover!important;background-position: center center!important;min-height:100vh;">
     <div class="container">
-
+        <div clas="row centered">
+            <div class="col-md-12" style="min-height:30vh!important;"></div>
+        </div>
       <div class="row centered">
-        <div class="col-lg-12">
+        <div class="col-md-12">
           <h1>{{ $name }}</h1>
           <h3>Web Designer | {{ $email }}</h3>
         </div>
