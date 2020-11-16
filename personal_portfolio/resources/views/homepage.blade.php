@@ -190,40 +190,34 @@
 
 
   <!--AWARDS DESCRIPTION -->
+  @if(!is_null($awards))
   <div class="container desc">
-    <div class="row">
-      <div class="col-lg-2 col-lg-offset-1">
+    <div class="">
         <h5>AWARDS</h5>
       </div>
-      <div class="col-lg-6">
-        <p>
-          <t>Best Web Design</t><br/> Example Site <br/>
-        </p>
-      </div>
-      <div class="col-lg-3">
-        <p>
-          <sm>NOVEMBER 2013</sm>
-        </p>
-      </div>
+   @foreach($awards as $award)
+   <div class="row" style="padding-left:100px!important;">
 
-      <div class="col-lg-6 col-lg-offset-3">
-        <p>
-          <t>Designer of the Year</t><br/> Awwwards Site
-        </p>
-        <p>
-          <more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more>
-        </p>
-      </div>
-      <div class="col-lg-3">
-        <p>
-          <sm>2013</sm>
-        </p>
-      </div>
-
+    <div class="col-md-8">
+      <p>
+        <t>{{ $award->award }}</t><br/> {{ $award->given_by }} <br/>
+      </p>
+      <p>
+          <more>
+              {{ $award->description }}
+          </more>
+      </p>
     </div>
+    <div class="col-md-2">
+          <p><small>{{ $award->date }}</small></p>
+    </div>
+
+  </div>
+   @endforeach
     <!--/.row -->
     <br>
   </div>
+  @endif
   <!--/.container -->
 
 

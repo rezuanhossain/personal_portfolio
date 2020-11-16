@@ -9,6 +9,7 @@ use App\WorkField;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
+use App\Award;
 class HomeController extends Controller
 {
     /**
@@ -108,8 +109,8 @@ class HomeController extends Controller
 
         $education=EducationField::where('user_id',$id)->get();
         $work_field=WorkField::where('user_id',$id)->get();
+        $awards=Award::all()->where('user_id',$id);
 
-
-        return view('homepage',compact('skills','social_links','email','name','address','phone_no','id','about','education','work_field','image','genera'));
+        return view('homepage',compact('skills','social_links','email','name','address','phone_no','id','about','education','work_field','image','genera','awards'));
     }
 }
