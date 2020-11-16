@@ -229,6 +229,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <div class="card-body">
                 <form action="{{ route("profile.update") }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <label for="address">Your Genera  </label>
+                    <input class="form-control form-group" type="text" name="genera" placeholder="Put Your Work Genera" value={{ Auth::user()->genera ?? "" }} >
                 <h5 class="card-title">Add Skills</h5>
                 <div>
                     <input type="hidden" name="id" value={{ Auth::user()->id }}>
@@ -301,7 +303,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
 
             </div>
-
+            {{-- Awards section --}}
+            <div class="card card-primary">
+                <div class="card-body">
+                    <label for="award">Award </label>
+                    <input class="form-control form-group" type="text" id="award" name="award" placeholder="Put Award title" >
+                    <label for="given_by">Given By </label>
+                    <input class="form-control form-group" type="text" id="given_by" name="given_by" placeholder="Put The institute / organization name" >
+                    <label for="award_date">Received Date </label>
+                    <input class="form-control form-group" type="date" id="award_date" name="award_date" placeholder="Put Received Date" >
+                    <textarea class="form-control" id="award_description" placeholder="Put Award Description ..." name="award_description" rows="3"></textarea><br>
+                   <input class="form-group btn btn-primary" id="add4" value="Add" readonly>
+                   <a id="edit4"  href="{{ route('award.view') }}" class="btn btn-success form-control form-group" style="display: none;" >Edit Entry</a>
+                </div>
+            </div>
             {{-- work section --}}
             <div class="card card-primary ">
                 <div class="card-body">
@@ -346,6 +361,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <input class="form-control form-group" type="text" name="email" placeholder="Put Email" value={{ Auth::user()->email ?? "" }} >
                   <label for="address">Phone Number </label>
                   <input class="form-control form-group" type="text" name="phone_no" placeholder="Put Phone Number" value={{ Auth::user()->phone_no ?? "" }} >
+
                   <label for="address">Address </label>
                   <input class="form-control form-group" type="text" name="address" placeholder="Put Address (don't put space..)" value={{ Auth::user()->address ?? ""}} >
                   <label for="About">About</label>
@@ -505,9 +521,44 @@ $(document).on('click', '.remove-tr', function(){
           button.style.margin="0px";
         },
        });
-});
-
+    });
 </script>
+
+<script>
+    $("#add4").click(function(){
+    console.log("hit");
+    var award=document.getElementById('award').value;
+    var given_by=document.getElementById('given_by').value;
+    var award_date=document.getElementById('award_date').value;
+    var award_description=document.getElementById('award_description').value;
+
+    let _token   = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+       url: "/award-create",
+        type:"POST",
+        data:{
+          award:award,
+          given_by:given_by,
+          description:award_description,
+          date:award_date,
+
+          _token: _token
+        },
+        success:function(response){
+
+          let button=document.getElementById('edit4')
+          button.style.display="block";
+          button.style.color="white";
+          button.style.padding="10px";
+
+          button.style.height="50px";
+
+          button.style.margin="0px";
+        },
+       });
+    });
+</script>
+
 
 </body>
 </html>

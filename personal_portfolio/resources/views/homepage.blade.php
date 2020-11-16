@@ -80,7 +80,7 @@
       <div class="row centered">
         <div class="col-md-12">
           <h1>{{ $name }}</h1>
-          <h3>Web Designer | {{ $email }}</h3>
+          <h3>{{ $genera }} | {{ $email }}</h3>
         </div>
         <!--/.col-lg-12 -->
       </div>
@@ -253,61 +253,12 @@
     </div>
     <!--/.container -->
   </div>
+  <br>
   <!--/ #skillswrap -->
+<hr style="color:white; background-color:black;">
 
-
-
-  <section id="work" name="work">
-    <!--PORTFOLIO DESCRIPTION -->
-    <div class="container desc">
-      <div class="row">
-        <div class="col-lg-2 col-lg-offset-1">
-          <h5>PORTFOLIO</h5>
-        </div>
-        <div class="col-lg-6">
-          <p><img class="img-responsive" src="img/port01.jpg" alt=""></p>
-        </div>
-        <div class="col-lg-3">
-          <p>CANALS OF ENGLAND</p>
-          <p>
-            <more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br/><br/>
-              <sm><i class="icon-tag"></i> design</sm>
-            </more>
-          </p>
-        </div>
-
-        <div class="col-lg-6 col-lg-offset-3">
-          <p><img class="img-responsive" src="img/port02.jpg" alt=""></p>
-        </div>
-        <div class="col-lg-3">
-          <p>SANKEY</p>
-          <p>
-            <more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br/><br/>
-              <sm><i class="icon-tag"></i> front-end</sm>
-            </more>
-          </p>
-        </div>
-
-        <div class="col-lg-6 col-lg-offset-3">
-          <p><img class="img-responsive" src="img/port03.jpg" alt=""></p>
-        </div>
-        <div class="col-lg-3">
-          <p>WE GROW</p>
-          <p>
-            <more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br/><br/>
-              <sm><i class="icon-tag"></i> web design</sm>
-            </more>
-          </p>
-        </div>
-
-      </div>
-      <!--/.row -->
-      <br>
-      <br>
-    </div>
-    <!--/.container -->
-  </section>
-
+<br>
+<!--Contact Section-->
   <section id="contact" name="contact">
     <!--FOOTER DESCRIPTION -->
     <div id="footwrap">
@@ -367,7 +318,7 @@
               </div>
 
               <div class="form-group">
-                <button type="submit" class="btn btn-large">Send Message</button>
+                <button type="submit" class="btn btn-large" style="background-color:#44bbaa;color:white;">Send Message</button>
               </div>
 
             </form>
@@ -380,18 +331,6 @@
     </div>
     <!--/ #footer -->
   </section>
-
-{{--   <div id="copyrights">
-    <div class="container">
-      <p>
-        &copy; Copyrights <strong>Kelvin</strong>. All Rights Reserved
-      </p>
-      <
-        Created with Kelvin template by <a href="https://templatemag.com/">TemplateMag</a>
-      </div>
-    </div>
-  </div> --}}
-
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.min.js"></script>

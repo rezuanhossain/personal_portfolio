@@ -33,3 +33,8 @@ route::get('/workfield-list','workFieldController@index')->name('workfield.list'
 route::get('/workfield-delete/{id}','workFieldController@delete')->name('workfield.delete');
 route::get('/workfield-edit/{id}','workFieldController@edit')->name('workfield.edit');
 Route::post('/workfiled-update','WorkFieldController@update')->name('workfiled.update');
+Route::post('/award-create','AwardController@create')->name('award.create');
+Route::get('/award-view','AwardController@index')->name('award.view');
+route::get('/award-delete/{id}','AwardController@delete')->name('award.delete');
+route::get('/award-edit/{id}','AwardController@edit')->name('award.edit');
+Route::post('/award-update','AwardController@update')->name('award.update');

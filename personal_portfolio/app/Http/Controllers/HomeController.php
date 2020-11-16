@@ -33,13 +33,6 @@ class HomeController extends Controller
         return view('home',compact('user'));
     }
     public function update_profile(Request $request){
-        if ($request->file('image')) {
-            $img = $request->image;
-            $imagePath = $request->file('image');
-            $imageName = $imagePath->getClientOriginalName();
-            $img->move(public_path('images/'.auth()->user()->name.'/'), $imageName);
-          }
-
 
         $id=$request->id;
         $to=$request->end;
@@ -51,10 +44,32 @@ class HomeController extends Controller
 
             array_push($social_links,$request->social_links);
         }
-        if(!is_null($user->image)){
 
-            File::delete( public_path(''.$user->image));
-        }
+        if ($request->file('image')) {
+            if(!is_null($user->image)){
+
+                File::delete( public_path(''.$user->image));
+            }
+            $img = $request->image;
+            $imagePath = $request->file('image');
+            $imageName = $imagePath->getClientOriginalName();
+            $img->move(public_path('images/'.auth()->user()->name.'/'), $imageName);
+            $user->update([
+                'skills'=>$request->skills,
+                'social_links'=>$request->social_links,
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'phone_no'=> $request->phone_no,
+                'address'=>$request->address,
+                'about'=>$request->about,
+                'genera'=>$request->genera,
+                'image'=>'images/'.auth()->user()->name.'/'.$imageName,
+            ]);
+
+          }
+
+
+
         $user->update([
             'skills'=>$request->skills,
             'social_links'=>$request->social_links,
@@ -63,7 +78,8 @@ class HomeController extends Controller
             'phone_no'=> $request->phone_no,
             'address'=>$request->address,
             'about'=>$request->about,
-            'image'=>'images/'.auth()->user()->name.'/'.$imageName,
+            'genera'=>$request->genera,
+
         ]);
 
 
@@ -88,11 +104,12 @@ class HomeController extends Controller
         $about=$user->about;
         $id=$user->id;
         $image=$user->image;
+        $genera=$user->genera;
 
         $education=EducationField::where('user_id',$id)->get();
         $work_field=WorkField::where('user_id',$id)->get();
 
 
-        return view('homepage',compact('skills','social_links','email','name','address','phone_no','id','about','education','work_field','image'));
+        return view('homepage',compact('skills','social_links','email','name','address','phone_no','id','about','education','work_field','image','genera'));
     }
 }
