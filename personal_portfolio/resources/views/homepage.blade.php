@@ -38,6 +38,11 @@
               <li class="menu-item"><a class="smothscroll" href="#resume" title="Resume"><i class="fa fa-file-text-o"><span> Resume</span></i></a></li>
               <li class="menu-item"><a class="smothscroll" href="#work" title="Works"><i class="fa fa-briefcase"><span>  Works</span></i></a></li>
               <li class="menu-item"><a class="smothscroll" href="#contact" title="Contact"><i class="fa fa-envelope"><span> Contact</span></i></a></li>
+                <li class="menu-item">
+              @auth
+              <a  href="{{ route('home') }}" title="Contact"><i class="fa fa-gear"><span> Dashboard</span></i></a>
+              @endauth
+            </li>
             </ul>
             <!--/ uL#nav -->
             <div class="card-body" >
@@ -67,13 +72,15 @@
   </div>
   <!--/ #section-topbar -->
 
-  <div id="headerwrap">
+  <div id="headerwrap" style="background:url({{ asset($image ?? "") }})no-repeat center top;background-size: cover!important;background-position: center center!important;min-height:100vh;">
     <div class="container">
-
+        <div clas="row centered">
+            <div class="col-md-12" style="min-height:30vh!important;"></div>
+        </div>
       <div class="row centered">
-        <div class="col-lg-12">
+        <div class="col-md-12">
           <h1>{{ $name }}</h1>
-          <h3>Web Designer | {{ $email }}</h3>
+          <h3>{{ $genera }} | {{ $email }}</h3>
         </div>
         <!--/.col-lg-12 -->
       </div>
@@ -114,7 +121,7 @@
     <!--EDUCATION DESCRIPTION -->
     <div class="container desc">
         <div class="">
-            <h5><strong>EDUCATION</strong></h5>
+            <h5>EDUCATION</h5>
             <br>
           </div>
       <div class="row" style="padding-left:100px!important;">
@@ -149,38 +156,31 @@
 
   <!--WORK DESCRIPTION -->
   <div class="container desc">
-    <div class="row">
-
-      <div class="col-lg-2 col-lg-offset-1">
+    <div class="">
         <h5>WORK</h5>
       </div>
-      <div class="col-lg-6">
-        <p>
-          <t>Front-end Developer</t><br/> Example Corp. <br/>
-        </p>
-        <p>
-          <more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more>
-        </p>
-      </div>
-      <div class="col-lg-3">
-        <p>
-          <sm>AUGUST 2012 - CURRENT</sm>
-        </p>
-      </div>
+    <div class="row" >
+        @if(!is_null($work_field))
+        @foreach($work_field as $item)
 
-      <div class="col-lg-6 col-lg-offset-3">
-        <p>
-          <t>Web Designer - Intern</t><br/> Onassis Ltd. <br/>
-        </p>
-        <p>
-          <more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more>
-        </p>
-      </div>
-      <div class="col-lg-3">
-        <p>
-          <sm>JUNE 2010 - JULY 2012</sm>
-        </p>
-      </div>
+        <div style="padding-left:100px!important;">
+            <div class="col-md-9">
+                <p>
+                  <t>{{ $item->title }}</t><br/>{{ $item->company }}<br/>
+                </p>
+                <p>
+                  <more>{{ $item->description }}</more>
+                </p>
+              </div>
+              <div class="col-md-3">
+                <p>
+                  <sm>{{ $item->from }} - {{ $item->to }}</sm>
+                </p>
+              </div>
+        </div>
+        @endforeach
+
+      @endif
     </div>
     <!--/.row -->
     <br>
@@ -190,40 +190,34 @@
 
 
   <!--AWARDS DESCRIPTION -->
+  @if(!is_null($awards))
   <div class="container desc">
-    <div class="row">
-      <div class="col-lg-2 col-lg-offset-1">
+    <div class="">
         <h5>AWARDS</h5>
       </div>
-      <div class="col-lg-6">
-        <p>
-          <t>Best Web Design</t><br/> Example Site <br/>
-        </p>
-      </div>
-      <div class="col-lg-3">
-        <p>
-          <sm>NOVEMBER 2013</sm>
-        </p>
-      </div>
+   @foreach($awards as $award)
+   <div class="row" style="padding-left:100px!important;">
 
-      <div class="col-lg-6 col-lg-offset-3">
-        <p>
-          <t>Designer of the Year</t><br/> Awwwards Site
-        </p>
-        <p>
-          <more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more>
-        </p>
-      </div>
-      <div class="col-lg-3">
-        <p>
-          <sm>2013</sm>
-        </p>
-      </div>
-
+    <div class="col-md-8">
+      <p>
+        <t>{{ $award->award }}</t><br/> {{ $award->given_by }} <br/>
+      </p>
+      <p>
+          <more>
+              {{ $award->description }}
+          </more>
+      </p>
     </div>
+    <div class="col-md-2">
+          <p><small>{{ $award->date }}</small></p>
+    </div>
+
+  </div>
+   @endforeach
     <!--/.row -->
     <br>
   </div>
+  @endif
   <!--/.container -->
 
 
@@ -253,61 +247,12 @@
     </div>
     <!--/.container -->
   </div>
+  <br>
   <!--/ #skillswrap -->
+<hr style="color:white; background-color:black;">
 
-
-
-  <section id="work" name="work">
-    <!--PORTFOLIO DESCRIPTION -->
-    <div class="container desc">
-      <div class="row">
-        <div class="col-lg-2 col-lg-offset-1">
-          <h5>PORTFOLIO</h5>
-        </div>
-        <div class="col-lg-6">
-          <p><img class="img-responsive" src="img/port01.jpg" alt=""></p>
-        </div>
-        <div class="col-lg-3">
-          <p>CANALS OF ENGLAND</p>
-          <p>
-            <more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br/><br/>
-              <sm><i class="icon-tag"></i> design</sm>
-            </more>
-          </p>
-        </div>
-
-        <div class="col-lg-6 col-lg-offset-3">
-          <p><img class="img-responsive" src="img/port02.jpg" alt=""></p>
-        </div>
-        <div class="col-lg-3">
-          <p>SANKEY</p>
-          <p>
-            <more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br/><br/>
-              <sm><i class="icon-tag"></i> front-end</sm>
-            </more>
-          </p>
-        </div>
-
-        <div class="col-lg-6 col-lg-offset-3">
-          <p><img class="img-responsive" src="img/port03.jpg" alt=""></p>
-        </div>
-        <div class="col-lg-3">
-          <p>WE GROW</p>
-          <p>
-            <more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br/><br/>
-              <sm><i class="icon-tag"></i> web design</sm>
-            </more>
-          </p>
-        </div>
-
-      </div>
-      <!--/.row -->
-      <br>
-      <br>
-    </div>
-    <!--/.container -->
-  </section>
-
+<br>
+<!--Contact Section-->
   <section id="contact" name="contact">
     <!--FOOTER DESCRIPTION -->
     <div id="footwrap">
@@ -367,7 +312,7 @@
               </div>
 
               <div class="form-group">
-                <button type="submit" class="btn btn-large">Send Message</button>
+                <button type="submit" class="btn btn-large" style="background-color:#44bbaa;color:white;">Send Message</button>
               </div>
 
             </form>
@@ -380,18 +325,6 @@
     </div>
     <!--/ #footer -->
   </section>
-
-{{--   <div id="copyrights">
-    <div class="container">
-      <p>
-        &copy; Copyrights <strong>Kelvin</strong>. All Rights Reserved
-      </p>
-      <
-        Created with Kelvin template by <a href="https://templatemag.com/">TemplateMag</a>
-      </div>
-    </div>
-  </div> --}}
-
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.min.js"></script>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkFieldsTable extends Migration
+class CreateAwardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateWorkFieldsTable extends Migration
      */
     public function up()
     {
-        Schema::create('work_fields', function (Blueprint $table) {
+        Schema::create('awards', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('title');
-            $table->string('company');
-            $table->text('description');
-            $table->date('from');
-            $table->string('to');
+            $table->string('award');
+            $table->string('given_by');
+            $table->text('description')->nullable();
+            $table->date('date');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateWorkFieldsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_fields');
+        Schema::dropIfExists('awards');
     }
 }

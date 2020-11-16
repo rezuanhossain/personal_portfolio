@@ -28,3 +28,13 @@ Route::get('/education-view','EducationFieldController@index')->name('education.
 Route::get('/edication-delete/{id}','EducationFieldController@delete_entry')->name('education.delete');
 Route::get('/education-edit/{id}','EducationFieldController@edit')->name('education.edit');
 Route::post('/education-update','EducationFieldController@update')->name('education.update');
+route::post('/workfield-create','workFieldController@store')->name('workfield.create');
+route::get('/workfield-list','workFieldController@index')->name('workfield.list');
+route::get('/workfield-delete/{id}','workFieldController@delete')->name('workfield.delete');
+route::get('/workfield-edit/{id}','workFieldController@edit')->name('workfield.edit');
+Route::post('/workfiled-update','WorkFieldController@update')->name('workfiled.update');
+Route::post('/award-create','AwardController@create')->name('award.create');
+Route::get('/award-view','AwardController@index')->name('award.view');
+route::get('/award-delete/{id}','AwardController@delete')->name('award.delete');
+route::get('/award-edit/{id}','AwardController@edit')->name('award.edit');
+Route::post('/award-update','AwardController@update')->name('award.update');
