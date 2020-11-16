@@ -53,7 +53,7 @@ class HomeController extends Controller
     }
     public function show(){
 
-        $usr=User::where('email','stahzid550@gmail.com')->get();
+        $usr=User::where('email','antuahmed@gmail.com')->get();
 
         $user=$usr[0];
         $skills=$user->skills;
