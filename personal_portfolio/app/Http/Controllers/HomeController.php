@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user=User::where('email','stahzid550@gmail.com');
+        $user=User::where('email','antu@gmail.com');
 
         return view('home',compact('user'));
     }
@@ -88,7 +88,7 @@ class HomeController extends Controller
     }
     public function show(){
 
-        $usr=User::where('email','antuahmed@gmail.com')->get();
+        $usr=User::where('email','antu@gmail.com')->get();
 
         $user=$usr[0];
         $skills=$user->skills;
