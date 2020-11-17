@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\EducationField;
 use App\WorkField;
+use App\ContactForm;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
@@ -21,6 +22,10 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
+    // public function log_out(){
+    //     Auth::logout();
+    //     return redirect();
+    // }
 
     /**
      * Show the application dashboard.
@@ -31,7 +36,10 @@ class HomeController extends Controller
     {
         $user=User::where('email','antu@gmail.com');
 
-        return view('home',compact('user'));
+        $count=ContactForm::where('for_user',$user->id)->where('seen','0')->count();
+
+
+        return view('home',compact('user','count'));
     }
     public function update_profile(Request $request){
 
@@ -110,6 +118,7 @@ class HomeController extends Controller
         $education=EducationField::where('user_id',$id)->get();
         $work_field=WorkField::where('user_id',$id)->get();
         $awards=Award::all()->where('user_id',$id);
+
 
         return view('homepage',compact('skills','social_links','email','name','address','phone_no','id','about','education','work_field','image','genera','awards'));
     }

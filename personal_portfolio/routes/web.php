@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +21,13 @@ Route::get('/', function () {
 });
 
 Auth::routes(['verify' => true]);
+Route::get('/logout', function () {
+    //logout user
+    Auth::logout();
+    // redirect to homepage
+    return redirect('/');
+});
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/landing', 'HomeController@show')->name('homepage');
@@ -38,3 +48,5 @@ Route::get('/award-view','AwardController@index')->name('award.view');
 route::get('/award-delete/{id}','AwardController@delete')->name('award.delete');
 route::get('/award-edit/{id}','AwardController@edit')->name('award.edit');
 Route::post('/award-update','AwardController@update')->name('award.update');
+Route::get('/mails-list','ContactFormController@index')->name('mail.view');
+Route::post('/mails-list','ContactFormController@mark')->name('mail.mark');
