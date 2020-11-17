@@ -7,7 +7,7 @@
         <div class="card card-primary ">
             <form action="{{ route('education.update') }}" method="POST">
                 @csrf
-            <div class="card-body">
+             <div class="card-body">
                 <input type="hidden" name="id" value="{{ $entry->id }}">
               <label for="title">Degree </label>
               <input class="form-control form-group" type="text" id="title" name="title" value="{{ $entry->title }}" placeholder="Put Degree title" >

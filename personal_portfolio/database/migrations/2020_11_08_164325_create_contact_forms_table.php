@@ -19,6 +19,7 @@ class CreateContactFormsTable extends Migration
             $table->string('email');
             $table->string('subject');
             $table->text('message');
+            $table->boolean('seen')->default(false);
             $table->unsignedBigInteger('for_user');
             $table->timestamps();
         });

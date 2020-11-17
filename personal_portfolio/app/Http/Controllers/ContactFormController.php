@@ -19,4 +19,20 @@ class ContactFormController extends Controller
 
         return redirect()->back()->with('message','Thanks for contacting!');
     }
+    public function index(){
+        $mails=ContactForm::all()->where('for_user',auth()->user()->id)->where('seen',0);
+
+        return view('mailList',compact('mails'));
+    }
+    public function mark(Request $request){
+
+
+            $entry=ContactForm::findOrFail($request->id);
+            $entry->update([
+                'seen'=>1,
+            ]);
+
+
+        return response()->json(['success'=>'Ajax request submitted successfully']);
+    }
 }
