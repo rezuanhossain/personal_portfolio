@@ -34,7 +34,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user=User::where('email','antu@gmail.com');
+        $user=User::where('email','antu@gmail.com')->first();
 
         $count=ContactForm::where('for_user',$user->id)->where('seen','0')->count();
 
@@ -92,7 +92,7 @@ class HomeController extends Controller
         ]);
 
 
-        return redirect()->back();
+        return redirect()->route('home');
     }
     public function show(){
 
