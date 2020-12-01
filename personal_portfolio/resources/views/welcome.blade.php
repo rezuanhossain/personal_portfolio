@@ -47,16 +47,23 @@
           <h1 class="mb-5">Build a portfoli for you or browse others'</h1>
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form>
+
             <div class="form-row">
               <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="email" class="form-control form-control-lg" placeholder="Enter email to find someone's portfolio...">
+                <input id="query" type="email" class="form-control form-control-lg" placeholder="Enter email to find someone's portfolio...">
               </div>
               <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">Search<i style="padding-left:10px;" class="fa fa-search"></i></button>
+                <label id="search"  onclick="search()" class="btn btn-block btn-lg btn-primary">Search<i style="padding-left:10px;" class="fa fa-search"></i></label>
               </div>
             </div>
-          </form>
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-lg-6">
+                    <div class="container" id="result"></div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
       </div>
     </div>
@@ -177,8 +184,57 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+
+<script>
+function search(){
+    var query=document.getElementById('query').value.toString();
+    // ajax call
+    var xhttp = new XMLHttpRequest();
+              xhttp.open("GET", `/search-user/${query}`, true);
+              xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+              xhttp.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+
+                      // Response
+                      var response = this.response;
+                      var res=JSON.parse(response);
+                      console.log(res[0].message);
+                      var image;
+                        if(res.image){
+                            image=res.image;
+                        }
+                        image="avatar.jpg";
+                        var result=document.getElementById('result');
+                       if(res[0].message ==="result found"){
+                         result.innerHTML=`
+                        <br>
+                        <h3 style="color:#00973E;text-aling:center;"> Search Results...!</h3>
+                            <div class="card" >
+                                <img class="card-img-top" src="../../images/${image}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 style="z-index:100; color:black;" class="">${res[0].name}</h5>
+                                    <p class="" style="z-index:100; color:black;">${res[0].email}</p>
+                                    <a href="/landing/${res[0].id}" class="btn btn-primary">See the Portfolio</a>
+                                </div>
+                            </div>
+                        `;
+                       }
+                       else{
+                         result.innerHTML=`
+                            <br>
+                            <h2 style="color:red;">${res[0].message}</h2>
+                        `;
+                       }
+
+
+                  }
+                };
+                xhttp.send();
+}
+</script>
 
 </body>
 

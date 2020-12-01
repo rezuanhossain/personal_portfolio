@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/','HomeController@welcome')->name('welcome');
 Route::get('/landing/{id}', 'HomeController@show')->name('homepage');
+Route::get('/search-user/{mail}','HomeController@search_user')->name('search.user');
 Auth::routes(['verify' => true]);
 Route::get('/logout', function () {
     //logout user
