@@ -131,7 +131,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <a class="btn" style="background-color: rgb(86, 226, 203)" href="{{ route('homepage') }}"><h1 class="m-0 text-white">Visit Your Site <i class="fa fa-arrow-right"></i></h1></a >
+            <a class="btn" style="background-color: rgb(86, 226, 203)" href="{{ route('homepage',['id' => auth()->user()->id]) }}"><h1 class="m-0 text-white">Visit Your Site <i class="fa fa-arrow-right"></i></h1></a >
           </div><!-- /.col -->
 
         </div><!-- /.row -->

@@ -20,12 +20,17 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
     // public function log_out(){
     //     Auth::logout();
     //     return redirect();
     // }
+
+    public function welcome(){
+        $users=User::all();
+        return view('welcome',compact('users'));
+    }
 
     /**
      * Show the application dashboard.
@@ -94,11 +99,11 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
-    public function show(){
+    public function show($id){
 
-        $usr=User::where('email','stahzid550@gmail.com')->get();
-
-        $user=$usr[0];
+        // $usr=User::where('email','stahzid550@gmail.com')->get();
+        $user=User::findOrFail($id);
+        // $user=$usr[0];
         $skills=$user->skills;
         $social_links=$user->social_links;
         if($skills){
