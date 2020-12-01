@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row"><h1>Your Entry List</h1></div>
         @if(!is_null($awards))
-        @foreach($awards  as $item)
+        @forelse($awards  as $item)
         <div class="card">
             <div class="shadow">
                 <div class="card-header">
@@ -26,8 +26,14 @@
             </div>
 
         </div>
+
         <br>
-        @endforeach
+        @empty
+            <h1 style="color:red;">No Entry to Show..!</h1>
+
+
+        <br>
+        @endforelse
         @endif
 
     </div>

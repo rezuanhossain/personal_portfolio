@@ -31,7 +31,7 @@
     <div class="row"><h1>Your Entry List</h1></div>
         @csrf
 
-    @foreach($mails  as $item)
+    @forelse($mails  as $item)
     <div class="card">
         <div class="shadow">
 
@@ -56,7 +56,10 @@
 
     </div>
     <br>
-    @endforeach
+    @empty
+            <h1 style="color:red;">No Entry to Show...!</h1>
+    <br>
+    @endforelse
 
 
     @endif
