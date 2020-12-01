@@ -39,7 +39,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user=User::where('email','stahzid550@gmail.com')->first();
+        $user=User::where('email','antu@gmail.com')->first();
 
         $count=ContactForm::where('for_user',$user->id)->where('seen','0')->count();
 
@@ -97,13 +97,19 @@ class HomeController extends Controller
         ]);
 
 
-        return redirect()->back();
+        return redirect()->route('home');
     }
     public function show($id){
 
+<<<<<<< HEAD
         // $usr=User::where('email','stahzid550@gmail.com')->get();
         $user=User::findOrFail($id);
         // $user=$usr[0];
+=======
+        $usr=User::where('email','antu@gmail.com')->get();
+
+        $user=$usr[0];
+>>>>>>> 3bb6b631a47ac78958473c40940cb6af4911e1e1
         $skills=$user->skills;
         $social_links=$user->social_links;
         if($skills){
