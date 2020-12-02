@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use App\EducationField;
 use App\WorkField;
 use App\ContactForm;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 use App\Award;
 class HomeController extends Controller
