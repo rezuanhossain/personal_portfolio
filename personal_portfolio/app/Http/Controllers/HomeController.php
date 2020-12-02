@@ -18,12 +18,17 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
     // public function log_out(){
     //     Auth::logout();
     //     return redirect();
     // }
+
+    public function welcome(){
+        $users=User::all();
+        return view('welcome',compact('users'));
+    }
 
     /**
      * Show the application dashboard.
@@ -32,7 +37,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user=User::where('email','antu@gmail.com')->first();
+        $user=Auth::user();
 
         $count=ContactForm::where('for_user',$user->id)->where('seen','0')->count();
 
@@ -92,11 +97,11 @@ class HomeController extends Controller
 
         return redirect()->route('home');
     }
-    public function show(){
+    public function show($id){
 
-        $usr=User::where('email','antu@gmail.com')->get();
 
-        $user=$usr[0];
+        $user=User::findOrFail($id);
+        // $user=$usr[0];
         $skills=$user->skills;
         $social_links=$user->social_links;
         if($skills){
@@ -119,5 +124,17 @@ class HomeController extends Controller
 
 
         return view('homepage',compact('skills','social_links','email','name','address','phone_no','id','about','education','work_field','image','genera','awards'));
+    }
+
+    public function search_user(Request $request){
+        $data=[];
+        $user=User::where('email',$request->mail)->get();
+        if ($user->isEmpty()){
+            $data=array("message"=>"No Results Found..!");
+        }else{
+            $data=$user;
+            $data[0]["message"]="result found";
+        }
+         return response($data);
     }
 }

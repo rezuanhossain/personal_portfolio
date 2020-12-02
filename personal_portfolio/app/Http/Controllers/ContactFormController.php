@@ -18,6 +18,7 @@ class ContactFormController extends Controller
         ]);
 
         return redirect()->back()->with('message','Thanks for contacting!');
+
     }
     public function index(){
         $mails=ContactForm::all()->where('for_user',auth()->user()->id)->where('seen',0);

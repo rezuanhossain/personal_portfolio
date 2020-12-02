@@ -61,7 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset(auth()->user()->image) }}" class="img-circle elevation-6" alt="User Image">
+          <img src="{{ asset(auth()->user()->image ? 'images/'.auth()->user()->image : 'images/avatar.jpg') }}" class="img-circle elevation-6" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ auth()->user()->name }}</a>
@@ -73,7 +73,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview ">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -83,7 +83,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#skill_section" class="nav-link active smothscroll" >
+                <a href="#skill_section" class="nav-link smothscroll" >
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Skills</p>
                 </a>
@@ -97,13 +97,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="#social_media" class="nav-link smothscroll">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Social Media Links</p>
+                  <p>Mange Social Media Links</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#education_section" class="nav-link smothscroll">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Education Info</p>
+                  <p>Add Education Info</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -112,6 +112,66 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Awards & Achievements</p>
                 </a>
               </li>
+            </ul>
+          </li>
+
+
+          {{-- manage education details --}}
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Manage Education Info
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('education.view') }}" class="nav-link smothscroll" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View All Entries</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+          {{-- manage work details --}}
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-poll"></i>
+              <p>
+                Manage Work Info
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('workfield.list') }}" class="nav-link smothscroll" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View All Entries</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          {{-- manage award details --}}
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-certificate"></i>
+              <p>
+                Manage Awar(s) Info
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('award.view') }}" class="nav-link smothscroll" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View All Entries</p>
+                </a>
+              </li>
+
             </ul>
           </li>
 
@@ -131,7 +191,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <a class="btn" style="background-color: rgb(86, 226, 203)" href="{{ route('homepage') }}"><h1 class="m-0 text-white">Visit Your Site <i class="fa fa-arrow-right"></i></h1></a >
+            <a class="btn" style="background-color: rgb(86, 226, 203)" href="{{ route('homepage',['id' => auth()->user()->id]) }}"><h1 class="m-0 text-white">Visit Your Site <i class="fa fa-arrow-right"></i></h1></a >
           </div><!-- /.col -->
 
         </div><!-- /.row -->
