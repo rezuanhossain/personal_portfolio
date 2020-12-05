@@ -99,14 +99,15 @@
           <div class="col-lg-2 col-lg-offset-1">
             <h5>ABOUT</h5>
           </div>
-          <div class="col-lg-6">
+          <br>
+          <div class="col-lg-10 ">
             <p>{{  $about}}</p>
           </div>
-          <div class="col-lg-3">
+          {{-- <div class="col-lg-3">
             <p><a href="#"><i class="icon-file"></i></a>
               <sm>DOWNLOAD PDF</sm>
             </p>
-          </div>
+          </div> --}}
 
         </div>
         <!--/.row -->

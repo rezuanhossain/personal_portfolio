@@ -61,7 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset(auth()->user()->image ? 'images/'.auth()->user()->image : 'images/avatar.jpg') }}" class="img-circle elevation-6" alt="User Image">
+          <img src="{{ asset(auth()->user()->image ? auth()->user()->image : 'images/avatar.jpg') }}" class="img-circle elevation-6" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ auth()->user()->name }}</a>
@@ -397,7 +397,7 @@ $("#add").click(function(){
     var skill=$("#skill").val();
     var skill_level=$("#skill_level").val();
 
-    $("#dynamicTable").append('<tr><td><input type="text" name="skills['+skill+']" class="form-control" value="'+skill+''+skill_level+''+"%"+'" style="margin:5px;"/> <td><button type="button" class="btn btn-danger btn-md remove-tr">x</button></td></tr>');
+    $("#dynamicTable").append('<tr><td><input type="text" readonly name="skills['+skill+']" class="form-control" value="'+skill+' '+skill_level+''+"%"+'" style="margin:5px;"/> <td><button type="button" class="btn btn-danger btn-md remove-tr">x</button></td></tr>');
     $("#skill").val("");
     $("#skill_level").val("");
 });

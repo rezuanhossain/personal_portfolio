@@ -28,7 +28,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
-      <h1 class="navbar-brand" href="#"><i>Simple Portfoili Builder<i></h1>
+      <h1 class="navbar-brand" href="#"><i>Simple Portfolio Builder<i></h1>
         @if (auth()->user())
         <a  class="btn btn-success" href="{{ route('homepage',['id'=>auth()->user()->id]) }}">Your Page <i style="margin-left:5px; " class="fa fa-arrow-right"></i></a>
         @else
@@ -38,13 +38,13 @@
     </div>
   </nav>
 
-  <!-- Masthead -->
+    <!-- Masthead -->
   <header class="masthead text-white text-center">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-xl-10 col-md-10 col-sm-12 mx-auto">
-          <h1 class="mb-5">Build a portfoli for you or browse others'</h1>
+          <h1 class="mb-5">Build a portfolio for you or browse other's</h1>
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
 
@@ -68,7 +68,8 @@
       </div>
     </div>
   </header>
-
+ 
+ 
   <!-- Icons Grid -->
   <section class="features-icons bg-light text-center">
     <div class="container">
@@ -100,38 +101,37 @@
       </div>
     </div>
   </section>
+<!-- Call to Action -->
+@guest
+<section class="call-to-action text-white text-center">
+  <div class="overlay"></div>
+  <div class="container">
 
-  <!-- Call to Action -->
-  @guest
-  <section class="call-to-action text-white text-center">
-    <div class="overlay"></div>
-    <div class="container">
-
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h2 class="mb-4">Ready to get started? Sign up now!</h2>
-        </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-
-
-            <div class="form-row">
-
-              <div class="col-12 col-md-4 offset-4">
-
-                @if (Route::has('register'))
-                <a  class="btn btn-block btn-lg btn-primary" href="{{ route('register') }}">Sign up!</a>
-               @endif
-
-              </div>
-            </div>
-
-
-        </div>
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <h2 class="mb-4">Ready to get started? Sign up now!</h2>
       </div>
+      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
 
+
+          <div class="form-row">
+
+            <div class="col-12 col-md-4 offset-4">
+
+              @if (Route::has('register'))
+              <a  class="btn btn-block btn-lg btn-primary" href="{{ route('register') }}">Sign up!</a>
+             @endif
+
+            </div>
+          </div>
+
+
+      </div>
     </div>
-  </section>
-  @endguest
+
+  </div>
+</section>
+@endguest
   <hr/>
   <!-- Footer -->
   <footer class="footer bg-light">
