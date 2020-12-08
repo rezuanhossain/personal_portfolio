@@ -91,16 +91,16 @@
   <!--/.#headerwrap -->
 
 
-  <section id="about" name="about">
+  <section id="about" class="h-25 p-4" name="about" style="!important;background-color:#062727!important;>
     <div id="intro">
-      <div class="container">
-        <div class="row">
+      <div class="container ">
+        <div class="row"  style="align-items:center;">
 
-          <div class="col-lg-2 col-lg-offset-1">
-            <h5>ABOUT</h5>
+          <div class="col-lg-4 col-md-4 col-sm-2">
+            <h5  style="color:white!important;z-index:100;">ABOUT</h5>
           </div>
           <br>
-          <div class="col-lg-10 ">
+          <div class="col-lg-8 col-md-8 col-sm-10">
             <p>{{  $about}}</p>
           </div>
           {{-- <div class="col-lg-3">
@@ -118,7 +118,7 @@
   </section>
 
 
-  <section id="resume" name="resume">
+  <section id="resume" name="resume" style="background-color:#bce5e5!important;">
     <!--EDUCATION DESCRIPTION -->
     <div class="container desc">
         <div class="">
@@ -156,7 +156,7 @@
 
 
   <!--WORK DESCRIPTION -->
-  <div class="container desc" id="work">
+  <div class="container desc" id="work" >
     <div class="">
         <h5>WORK</h5>
       </div>
@@ -191,34 +191,39 @@
 
 
   <!--AWARDS DESCRIPTION -->
-  @if(!is_null($awards))
-  <div class="container desc">
-    <div class="">
-        <h5>AWARDS</h5>
+  <div style="background-color:#0e1d25!important;">
+    <div class="container" >
+      @if(!is_null($awards))
+      <div  class="container desc">
+        <div class="">
+            <h5 style="color:white!important;z-index:100;">AWARDS</h5>
+          </div>
+       @foreach($awards as $award)
+       <div class="row" style="padding-left:100px!important;">
+    
+        <div class="col-md-8">
+          <p style="color:white!important;z-index:100;">
+            <t style="color:white!important;z-index:100;">{{ $award->award }}</t><br/> {{ $award->given_by }} <br/>
+          </p>
+          <p style="color:white!important;z-index:100;">
+              <more style="color:white!important;z-index:100;">
+                  {{ $award->description }}
+              </more>
+          </p>
+        </div>
+        <div class="col-md-2">
+              <p><small>{{ $award->date }}</small></p>
+        </div>
+    
       </div>
-   @foreach($awards as $award)
-   <div class="row" style="padding-left:100px!important;">
-
-    <div class="col-md-8">
-      <p>
-        <t>{{ $award->award }}</t><br/> {{ $award->given_by }} <br/>
-      </p>
-      <p>
-          <more>
-              {{ $award->description }}
-          </more>
-      </p>
+       @endforeach
+        <!--/.row -->
+        <br>
+      </div>
+      @endif
     </div>
-    <div class="col-md-2">
-          <p><small>{{ $award->date }}</small></p>
-    </div>
+  </div>
 
-  </div>
-   @endforeach
-    <!--/.row -->
-    <br>
-  </div>
-  @endif
   <!--/.container -->
 
 
@@ -254,7 +259,7 @@
 
 <br>
 <!--Contact Section-->
-  <section id="contact" name="contact">
+  <section id="contact" name="contact" >
     <!--FOOTER DESCRIPTION -->
     <div id="footwrap">
       <div class="container">
