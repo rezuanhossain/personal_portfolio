@@ -212,7 +212,7 @@
           </p>
         </div>
         <div class="col-md-2">
-              <p><small>{{ $award->date }}</small></p>
+          <p style="color:white!important;z-index:100;"><small>{{ $award->date }}</small></p>
         </div>
     
       </div>
